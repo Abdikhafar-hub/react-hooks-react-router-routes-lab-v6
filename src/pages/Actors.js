@@ -20,6 +20,26 @@ function Actors() {
           name: "Meryl Streep",
           movies: ["The Devil Wears Prada", "Mamma Mia!", "Sophie's Choice"]
         },
+        {
+          name: "Benedict Cumberbatch",
+          movies: ["Doctor Strange", "Sherlock", "The Imitation Game"]
+        },
+        {
+          name: "Justin Timberlake",
+          movies: ["The Social Network", "Friends with Benefits", "In Time", "Trolls"]
+        },
+        {
+          name: "Anna Kendrick",
+          movies: ["Pitch Perfect", "Up in the Air", "A Simple Favor", "Into The Woods", "Trolls"]  // Added "Into The Woods"
+        },
+        {
+          name: "Tom Cruise",
+          movies: ["Mission: Impossible", "Top Gun", "Jerry Maguire"]
+        },
+        {
+          name: "Johnny Depp",
+          movies: ["Pirates of the Caribbean", "Black Mass", "Edward Scissorhands"]
+        },
         // Add more actors as needed
       ];
 

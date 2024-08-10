@@ -20,6 +20,18 @@ function Directors() {
           name: "Quentin Tarantino",
           movies: ["Pulp Fiction", "Kill Bill", "Django Unchained"]
         },
+        {
+          name: "Scott Derrickson",
+          movies: ["Doctor Strange", "Sinister", "The Exorcism of Emily Rose"]
+        },
+        {
+          name: "Mike Mitchell",
+          movies: ["Shrek Forever After", "Trolls", "The Lego Movie 2", "Sky High", "Alvin and the Chipmunks: Chipwrecked"]
+        },
+        {
+          name: "Edward Zwick",
+          movies: ["The Last Samurai", "Blood Diamond", "Glory", "Jack Reacher: Never Go Back", "The Siege"]  // Added "The Siege" here
+        },
         // Add more directors as needed
       ];
 

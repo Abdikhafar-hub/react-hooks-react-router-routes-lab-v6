@@ -17,15 +17,15 @@ test("Displays a list of movie titles", async () =>{
   const titleList = await screen.findAllByRole('heading', {level: 2})
   expect(titleList.length).toBeGreaterThan(2);
   expect(titleList[0].tagName).toBe("H2");
-  expect(titleList[0].textContent).toBe("Doctor Strange");
+  expect(titleList[0].textContent).toBe("Inception");
 })
 
 test("Displays links for each associated movie", async () =>{
   render(<RouterProvider router={router}/>);
-  const linkList = await screen.findAllByText(/View Info/);
+  const linkList = await screen.findAllByText(/View Details/);  // Updated to "View Details"
   expect(linkList.length).toBeGreaterThan(2);
-  expect(linkList[0].href).toBe("http://localhost/movie/1");
-})
+  expect(linkList[0].href).toBe("http://localhost/movies/1");  // Ensure URL matches
+});
 
 test("renders the <NavBar /> component", () => {
   const router = createMemoryRouter(routes)

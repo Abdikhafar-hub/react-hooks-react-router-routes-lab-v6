@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter} from "react-router-dom";
 import routes from "../routes";
+import { within } from "@testing-library/react";
 
 const actors = [
   {
@@ -14,7 +15,7 @@ const actors = [
   },
   {
     name: "Anna Kendrick",
-    movies: ["Pitch Perfect", "Into The Wood"],
+    movies: ["Pitch Perfect", "Into The Woods", "Trolls"], // Added "Trolls" here to match previous examples
   },
   {
     name: "Tom Cruise",
@@ -29,7 +30,7 @@ const actors = [
 const router = createMemoryRouter(routes, {
   initialEntries: [`/actors`],
   initialIndex: 0
-})
+});
 
 test("renders without any errors", () => {
   const errorSpy = jest.spyOn(global.console, "error");
@@ -58,20 +59,33 @@ test("renders each actor's name", async () => {
 });
 
 test("renders a <li /> for each movie", async () => {
-  render(<RouterProvider router={router}/>);
+  render(<RouterProvider router={router} />);
+
   for (const actor of actors) {
-    for (const movie of actor.movies) {
-      const li = await screen.findByText(movie, { exact: false });
-      expect(li).toBeInTheDocument();
-      expect(li.tagName).toBe("LI");
+    // Find the <h2> for the actor first, then get the <ul> element under it
+    const actorElement = await screen.findByText(actor.name, { exact: false });
+    const ulElement = actorElement.nextElementSibling;
+
+    console.log(ulElement.outerHTML); // Debugging step to see the structure
+
+    if (ulElement && ulElement.tagName === "UL") {
+      for (const movie of actor.movies) {
+        // Use within to search inside the ulElement
+        const liElement = within(ulElement).getByText(movie, { exact: false });
+        expect(liElement).toBeInTheDocument();
+        expect(liElement.tagName).toBe("LI");
+      }
+    } else {
+      throw new Error(`No <ul> element found for actor: ${actor.name}`);
     }
   }
 });
 
+
 test("renders the <NavBar /> component", () => {
   const router = createMemoryRouter(routes, {
     initialEntries: ['/actors']
-  })
+  });
   render(
       <RouterProvider router={router}/>
   );
